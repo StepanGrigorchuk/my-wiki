@@ -1,0 +1,262 @@
+:root {
+  --primary-color: #93109F;
+  --hover-color: #CB59D5;
+  --secondary-color: #E9CFEC;
+  --background-color: #ffffff;
+  --text-color: #493c3d;
+  --gray-color: #ccc;
+  --success-color: #28a745;
+  --error-color: #D3072F;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+header {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+#main-link {
+  font-size: 32px;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+#main-link:hover {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+a:hover {
+  text-decoration: none;
+  color: var(--hover-color);
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribute items, pushing search to the right */
+  width: 100%; /* Ensure the flex container uses full width */
+}
+nav .nav-item {
+  position: relative;
+  margin-right: 25px;
+}
+nav a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+nav a:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+nav .dropdown {
+  position: relative;
+}
+nav .dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-color);
+  transition: color 0.2s ease;
+}
+nav .dropdown-toggle:hover,
+nav .dropdown.active .dropdown-toggle {
+  color: var(--primary-color);
+}
+nav .dropdown-icon {
+  width: 12px;
+  height: 12px;
+  margin-left: 3px;
+  vertical-align: middle;
+}
+nav .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--background-color);
+  border: 1px solid var(--gray-color);
+  border-radius: 10px;
+  padding: 15px;
+  list-style: none;
+  min-width: 150px;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0);
+  transition: visibility 0s linear 0.2s, opacity 0.2s ease, transform 0.2s ease;
+}
+nav .dropdown:hover .dropdown-menu,
+nav .dropdown.active .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-5px);
+  transition: visibility 0s linear, opacity 0.2s ease, transform 0.2s ease;
+}
+nav .dropdown-menu li {
+  margin: 15px 0;
+  display: block;
+}
+
+nav #results-container {
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0;
+}
+nav #results-container:not(:empty) {
+  opacity: 1;
+}
+
+nav .search {
+  margin-left: auto; /* Pushes search to the right */
+}
+nav #search-input {
+  padding: 5px;
+  padding-left: 10px;
+  border: 1px solid var(--gray-color);
+  border-radius: 10px;
+  width: 250px;
+}
+nav #search-demo-container {
+  position: relative;
+  display: flex; /* Ensure container respects flex properties */
+  align-items: center;
+}
+nav #results-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--background-color);
+  border: 1px solid var(--gray-color);
+  border-radius: 10px;
+  padding-left: 18px;
+  padding-top: 10px;
+  margin: 0;
+  width: 250px;
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  list-style: none;
+  z-index: 1000;
+  display: block;
+}
+nav #results-container li {
+  margin: 10px 0;
+  display: block;
+}
+nav #results-container a {
+  display: block;
+  padding: 5px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 15px;
+}
+figure {
+  text-align: center;
+  margin: 1em 0;
+}
+figcaption {
+  font-style: italic;
+  color: var(--gray-color);
+  margin-top: 0.5em;
+}
+
+/* Table of Contents Styles */
+.toc {
+  position: fixed;
+  top: 20px;
+  left: -250px; /* Hidden off-screen by default */
+  width: 200px;
+  height: auto; /* Full height minus padding */
+  padding: 15px;
+  background: var(--background-color);
+  border-radius: 15px;
+  border: 1px solid var(--gray-color);
+  transition: left 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.toc-visible {
+  left: 20px; /* Slide in from the left */
+}
+.toc h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+}
+.toc-item {
+  margin: 5px 0;
+}
+.toc-level-h1 {
+  padding-left: 0;
+}
+.toc-level-h2 {
+  padding-left: 15px;
+}
+.toc-level-h3 {
+  padding-left: 30px;
+}
+.toc-level-h4 {
+  padding-left: 45px;
+}
+.toc-level-h5 {
+  padding-left: 60px;
+}
+.toc-level-h6 {
+  padding-left: 75px;
+}
+.toc-item a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+.toc-item a:hover {
+  color: var(--hover-color);
+}
+
+/* Toggle Button Styles */
+.toc-toggle {
+  display: block;
+  margin: 20px 0;
+  padding: 4px 18px;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  border: solid 1px;
+  border-color: var(--primary-color);
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+.toc-toggle:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* Adjust main content to avoid overlap with TOC */
+main {
+  margin-left: 0; /* No margin when TOC is hidden */
+}
+
+

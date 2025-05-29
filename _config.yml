@@ -1,0 +1,19 @@
+# Конфигурация сайта
+title: Моя вики по промышленному дизайну
+description: Вики, посвящённая промышленному дизайну
+baseurl: "/my-wiki" # Имя репозитория на GitHub Pages
+url: "https://StepanGrigorchuk.github.io" # Замените на ваш GitHub Pages URL
+
+# Настройки сборки
+markdown: kramdown
+theme: minima
+
+# Коллекции
+collections:
+  wiki:
+    output: true
+    permalink: /wiki/:name # Создаёт URL типа /wiki/introduction
+
+# Плагины
+plugins:
+  - jekyll-feed

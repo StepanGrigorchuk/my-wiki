@@ -1,0 +1,35 @@
+<nav>
+  <ul>
+    <!-- Основные страницы -->
+    {% assign main_pages = site.wiki | where: "is_main", true %}
+    {% for page in main_pages %}
+      <li class="nav-item"><a href="{{ site.baseurl }}/wiki/{{ page.name | remove: '.md' }}/">{{ page.title }}</a></li>
+    {% endfor %}
+    
+    <!-- Выпадающие списки для категорий -->
+    {% assign categories = site.wiki | where_exp: "item", "item.category" | group_by: "category" %}
+    {% for category in categories %}
+      <li class="nav-item dropdown">
+        <a href="#" class="dropdown-toggle">
+          {{ category.name }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" class="dropdown-icon">
+            <path d="M2 4L6 8L10 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <ul class="dropdown-menu">
+          {% for page in category.items %}
+            <li><a href="{{ site.baseurl }}/wiki/{{ page.name | remove: '.md' }}/">{{ page.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+    
+    <!-- Поле поиска -->
+    <li class="nav-item search">
+      <div id="search-demo-container">
+        <input type="text" id="search-input" placeholder="Поиск...">
+        <ul id="results-container"></ul>
+      </div>
+    </li>
+  </ul>
+</nav>

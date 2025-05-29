@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/assets/files/favicon.ico">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a id="main-link" href="{{ site.baseurl }}/">ELIXIR</a></h1>
+    {% include nav.html %}
+  </header>
+
+  <button id="toc-toggle" class="toc-toggle">Показать оглавление</button>
+  <div id="toc" class="toc"></div> <!-- TOC will slide in from the side -->
+
+  <main>
+    {{ content }}
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const jsonPath = '{{ site.baseurl }}/search.json';
+      console.log('Loading search JSON from:', jsonPath);
+      fetch(jsonPath)
+        .then(response => {
+          if (!response.ok) throw new Error('Failed to load search.json: ' + response.status);
+          return response.json();
+        })
+        .then(data => {
+          console.log('search.json contents:', data);
+          SimpleJekyllSearch({
+            searchInput: document.getElementById('search-input'),
+            resultsContainer: document.getElementById('results-container'),
+            json: jsonPath,
+            searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+            noResultsText: 'Ничего не найдено.',
+            limit: 10,
+            fuzzy: true
+          });
+          console.log('Search initialized successfully');
+        })
+        .catch(error => console.error('Search setup error:', error));
+    });
+  </script>
+  <script src="{{ site.baseurl }}/assets/js/d.js"></script>
+  <script src="{{ site.baseurl }}/assets/js/toc.js"></script> <!-- Include TOC script -->
+</body>
+</html>
